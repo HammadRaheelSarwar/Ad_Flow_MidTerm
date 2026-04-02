@@ -1,0 +1,28 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": ".next" }
+    },
+    {
+      "src": "server/src/index.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "server/src/index.js" },
+    { "source": "/(.*)", "destination": "/$1" }
+  ],
+  "crons": [
+    {
+      "path": "/api/internal/cron/publish-scheduled",
+      "schedule": "0 * * * *"
+    },
+    {
+      "path": "/api/internal/cron/expire-ads",
+      "schedule": "0 0 * * *"
+    }
+  ]
+}
