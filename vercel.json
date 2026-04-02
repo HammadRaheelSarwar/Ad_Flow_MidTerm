@@ -12,16 +12,11 @@
     }
   ],
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "server/src/index.js" },
-    { "source": "/(.*)", "destination": "/$1" }
+    { "source": "/api/(.*)", "destination": "server/src/index.js" }
   ],
   "crons": [
     {
       "path": "/api/internal/cron/publish-scheduled",
-      "schedule": "0 * * * *"
-    },
-    {
-      "path": "/api/internal/cron/expire-ads",
       "schedule": "0 0 * * *"
     }
   ]
